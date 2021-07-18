@@ -5,6 +5,7 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern')
 
+const render = require('./src/template.js')
 const temp = require('./src/template')
 const team =[]
 
@@ -65,16 +66,16 @@ function app() {
             team.push(manager);
             selectTeam()
         })
-
+    }
         function selectTeam() {
-            inquirer.input([
+            inquirer.prompt([
                 {
                     type: "list",
                     name: "empSelection",
                     message: "which role employee would you like to add?",
                     choices: [
                         "Intern",
-                        "Intern",
+                        "Engineer",
                         "Done"
                     ]
                 }
@@ -82,6 +83,7 @@ function app() {
                 switch(response.empSelection){
                     case "Intern":
                         addIntern();
+                        break;
                     case "Engineer":
                         addEngineer();
                     break;
@@ -90,8 +92,6 @@ function app() {
                 }
             })
         }
-        
-    }
 
     function addIntern() {
         inquirer.prompt([
@@ -200,11 +200,12 @@ function app() {
     }
 
     function generateTeam() {
-        if(!fs.existsSync(outPutDir)){
-            fs.mkdirSync(outPutDir)
+        // Create the output directory if the output path doesn't exist
+        if (!fs.existsSync(outPutDir)) {
+          fs.mkdirSync(outPutDir)
         }
-        fs.writeFileSync(outPut, render(team), "utf-8")
-    };
+        fs.writeFileSync(outPut, render(team), "utf-8");
+      }
 
     generateManager();
 }
