@@ -23,3 +23,4 @@ Users can start the program by running node index.js and follow the prompts to e
 
 ## Website
 Github Repo - https://github.com/dr-50/TeamProfileGenerator
+Video Demo - https://drive.google.com/file/d/1jI_ZsLVtHUG6CsMp1UcjfnRPdtYPBZ0I/view
